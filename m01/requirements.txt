@@ -1,0 +1,29 @@
+# Requirements for m01 module - Generative AI Applications with RAG and LangChain
+# Core LangChain dependencies
+langchain==0.2.7
+langchain-core==0.2.20
+langchain-community==0.2.1
+langchain-ibm==0.1.8
+langchain-text-splitters==0.2.2
+
+# IBM Watson AI dependencies
+ibm-watsonx-ai==1.0.10
+
+# Document loading dependencies
+pypdf==4.2.0
+PyMuPDF==1.24.5
+unstructured==0.14.8
+markdown==3.6
+jq==1.7.0
+pandas==2.2.2
+docx2txt==0.8
+requests==2.32.3
+beautifulsoup4==4.12.3
+nltk==3.8.0
+
+# Additional dependencies for exercises
+pypdfium2
+arxiv
+
+# HTML/XML processing
+lxml==5.2.2

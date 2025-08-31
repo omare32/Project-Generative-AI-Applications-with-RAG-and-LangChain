@@ -1,0 +1,27 @@
+# Requirements for m02 module - Generative AI Applications with RAG and LangChain
+# Core LangChain dependencies
+langchain==0.2.11
+langchain-core==0.2.20
+langchain-community==0.2.10
+langchain-ibm==0.1.11
+langchain-text-splitters==0.2.2
+
+# IBM Watson AI dependencies
+ibm-watsonx-ai==1.1.2
+
+# Vector database dependencies
+chromadb==0.4.24
+faiss-cpu==1.8.0
+
+# Document loading dependencies
+pypdf==4.3.1
+
+# Parsing dependencies
+lark==1.1.9
+
+# Embedding dependencies
+sentence-transformers==3.0.1
+
+# Additional dependencies
+numpy>=1.21.0
+pandas>=1.3.0
