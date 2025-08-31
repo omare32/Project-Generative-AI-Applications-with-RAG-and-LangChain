@@ -34,5 +34,9 @@ python-dotenv>=1.0.0
 pydantic>=2.6.0
 loguru>=0.7.0
 
+# PNG generation for submission
+Pillow>=10.0.0
+pygments>=2.15.0
+
 # Optional: Ollama support (for local LLMs)
 # ollama  # Install separately if using Ollama
