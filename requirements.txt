@@ -1,0 +1,59 @@
+# Comprehensive Requirements for Generative AI Applications with RAG and LangChain
+# Optimized for NVIDIA 4090 GPU with local models
+
+# Core LangChain dependencies (compatible versions)
+langchain==0.2.11
+langchain-core>=0.2.23,<0.3.0
+langchain-community==0.2.10
+langchain-text-splitters==0.2.2
+
+# Local LLM and Embedding alternatives (GPU-optimized)
+transformers>=4.40.0
+torch>=2.2.0  # Will auto-detect CUDA
+torchvision>=0.17.0
+torchaudio>=2.2.0
+accelerate>=0.30.0
+bitsandbytes>=0.43.0  # For quantization
+sentence-transformers>=3.0.1
+
+# Vector database dependencies
+chromadb==0.4.24
+faiss-cpu==1.8.0  # CPU version for compatibility
+pymilvus>=2.4.0  # Alternative vector database
+
+# Document loading and processing
+pypdf==4.3.1
+PyMuPDF==1.24.5
+unstructured==0.14.8
+markdown==3.6
+jq==1.7.0
+pandas>=1.3.0
+docx2txt==0.8
+requests==2.32.3
+beautifulsoup4==4.12.3
+nltk==3.8.0
+lxml==5.2.2
+
+# Web interface and utilities
+gradio>=4.0.0
+streamlit>=1.32.0
+fastapi>=0.110.0
+uvicorn>=0.27.0
+
+# Data processing and visualization
+numpy>=1.21.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.20.0
+
+# Additional utilities
+tqdm>=4.66.0
+python-dotenv>=1.0.0
+pydantic>=2.6.0
+loguru>=0.7.0
+
+# Development and testing
+pytest>=8.0.0
+black>=24.0.0
+flake8>=7.0.0
+mypy>=1.8.0
