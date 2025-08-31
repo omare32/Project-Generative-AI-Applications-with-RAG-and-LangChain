@@ -1,153 +1,164 @@
-# Module 02: Document Embedding and Vector Storage
+# Module 02: Document Embedding and Vector Storage (Local Models)
 
-This module covers the essential concepts of document embedding and vector storage for RAG (Retrieval-Augmented Generation) applications using LangChain.
+This module covers the essential concepts of document embedding and vector storage for RAG (Retrieval-Augmented Generation) applications using LangChain with local models optimized for GPU acceleration.
 
 ## Overview
 
 Module 02 introduces three key concepts:
-1. **Document Embedding** - Converting text to numerical vectors using Watsonx and HuggingFace models
+1. **Document Embedding** - Converting text to numerical vectors using local models (GPU optimized)
 2. **Retrievers** - Various types of document retrieval mechanisms for finding relevant information
 3. **Vector Stores** - Databases for storing and querying document embeddings efficiently
 
 ## Files
 
-### 1. `embed_documents_with_watsonx_embedding.py`
-**Purpose**: Demonstrates how to use embedding models from watsonx.ai and Hugging Face to embed documents.
+### 1. `embed_documents_local_models.py` ⭐ **NEW - GPU Optimized**
+**Purpose**: Demonstrates how to use local embedding models optimized for GPU to embed documents.
 
 **Key Concepts**:
 - Document preprocessing and chunking for embedding
-- IBM Watsonx.ai embedding models (slate-125m-english-rtrvr)
-- HuggingFace sentence-transformers (all-mpnet-base-v2)
+- Local embedding models with GPU acceleration (Sentence Transformers, HuggingFace)
 - Query and document embedding generation
-- Embedding dimension analysis (768-dimensional vectors)
+- Comparison of different local embedding approaches
 
-**Learning Objectives**:
-- Prepare and preprocess documents for embedding
-- Use watsonx.ai and Hugging Face embedding models to generate embeddings
+**Features**:
+- GPU detection and optimization for NVIDIA 4090
+- Multiple embedding model implementations
+- Custom transformers implementation
+- Complete exercise solutions
 
-### 2. `langchain_retriever.py`
-**Purpose**: Demonstrates how to use various types of retrievers to efficiently extract relevant document segments from text using LangChain.
+### 2. `langchain_retriever_local.py` ⭐ **NEW - Local Models**
+**Purpose**: Demonstrates various types of retrievers using local models for efficient document retrieval.
 
-**Retrievers Covered**:
-- **Vector Store-Backed Retriever**: Basic similarity search with various search types (similarity, MMR, threshold)
-- **Multi-Query Retriever**: Generates multiple query variations for comprehensive results
-- **Self-Querying Retriever**: Automatically constructs structured queries from natural language
-- **Parent Document Retriever**: Balances small chunks for accuracy with large chunks for context
+**Key Concepts**:
+- Vector Store-backed Retriever for semantic similarity
+- Multi-Query Retriever for comprehensive results
+- Self-Querying Retriever for structured queries
+- Parent Document Retriever for hierarchical retrieval
 
-**Key Features**:
-- Similarity search with configurable parameters
-- MMR (Maximum Marginal Relevance) for diverse results
-- Metadata-based filtering and querying
-- Context-aware document retrieval
+**Features**:
+- Local embedding models (no external API calls)
+- GPU acceleration support
+- Custom retriever implementation
+- Exercise solutions with practical examples
 
-**Learning Objectives**:
-- Use various types of retrievers for efficient document extraction
-- Apply different search strategies for optimal results
-- Implement intelligent query processing and filtering
+### 3. `langchain_vector_store_local.py` ⭐ **NEW - Local Models**
+**Purpose**: Demonstrates vector databases for storing and querying document embeddings.
 
-### 3. `langchain_vector_store.py`
-**Purpose**: Demonstrates how to use vector databases to store embeddings generated from textual data using LangChain.
+**Key Concepts**:
+- Chroma DB for development and prototyping
+- FAISS for large-scale similarity search
+- Hybrid search combining multiple approaches
+- Persistence and loading of vector stores
 
-**Vector Databases Covered**:
-- **Chroma DB**: Easy-to-use vector database with good performance
-- **FAISS**: High-performance vector similarity search library
-- **Vector Store Management**: CRUD operations (Create, Read, Update, Delete)
+**Features**:
+- Local embedding models with GPU support
+- Performance comparison between vector stores
+- Hybrid search implementation
+- Custom similarity functions
 
-**Key Features**:
-- Document embedding storage and retrieval
-- Similarity search with configurable parameters
-- Database management operations
-- Performance comparison between different vector stores
+### 4. `embed_documents_with_watsonx_embedding.py` (Legacy)
+**Purpose**: Original IBM Watson implementation (kept for reference).
 
-**Learning Objectives**:
-- Prepare and preprocess documents for embeddings
-- Generate embeddings using watsonx.ai's embedding model
-- Store embeddings in Chroma DB and FAISS
-- Perform similarity searches for relevant document retrieval
+### 5. `langchain_retriever.py` (Legacy)
+**Purpose**: Original IBM Watson implementation (kept for reference).
+
+### 6. `langchain_vector_store.py` (Legacy)
+**Purpose**: Original IBM Watson implementation (kept for reference).
 
 ## Installation
 
-1. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+# Install dependencies
+pip install -r requirements.txt
 
-2. **Set up IBM Watson AI credentials** (for embedding functionality):
-   - You'll need access to IBM's watsonx.ai platform
-   - Set up your project ID and credentials
+# For GPU acceleration (recommended for 4090)
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
 
 ## Usage
 
-### Running Individual Scripts
+### Basic Usage
 
 ```bash
-# Run the document embedding demo
-python embed_documents_with_watsonx_embedding.py
+# Check GPU availability and run embedding demo
+python embed_documents_local_models.py
 
-# Run the retriever demo
-python langchain_retriever.py
+# Test retriever functionality
+python langchain_retriever_local.py
 
-# Run the vector store demo
-python langchain_vector_store.py
+# Explore vector stores
+python langchain_vector_store_local.py
 ```
 
-### Running All Scripts
+### GPU Optimization
 
-```bash
-# Run all demonstrations in sequence
-python embed_documents_with_watsonx_embedding.py
-python langchain_retriever.py
-python langchain_vector_store.py
-```
+The scripts automatically detect and utilize your NVIDIA 4090 GPU:
+- CUDA acceleration for embedding models
+- GPU memory management
+- Fallback to CPU if GPU unavailable
 
-## Key Concepts
+## Key Features
 
-### Document Embedding
-- **Purpose**: Convert text to numerical vectors that capture semantic meaning
-- **Models**: IBM Watsonx.ai (slate-125m-english-rtrvr) and HuggingFace (all-mpnet-base-v2)
-- **Dimensions**: 768-dimensional vectors for semantic representation
-- **Applications**: Similarity search, clustering, classification
+### 🚀 **Performance Optimized**
+- GPU acceleration for embedding generation
+- Efficient vector storage with Chroma DB and FAISS
+- Optimized chunking strategies
 
-### Retrievers
-- **Vector Store-Backed**: Basic similarity search with configurable search types
-- **Multi-Query**: Generate multiple query variations for comprehensive coverage
-- **Self-Querying**: Natural language to structured query conversion
-- **Parent Document**: Balance accuracy and context in document retrieval
+### 🔒 **Privacy & Control**
+- No external API calls required
+- Local model execution
+- Complete data sovereignty
 
-### Vector Stores
-- **Chroma DB**: User-friendly vector database with good performance
-- **FAISS**: High-performance similarity search library
-- **Operations**: Store, retrieve, update, and delete embeddings
-- **Search**: Similarity-based document retrieval
+### 🧠 **Advanced Retrieval**
+- Multiple retriever types
+- Hybrid search approaches
+- Custom similarity functions
 
-## Workflow
+### 💾 **Persistence**
+- Save and load vector stores
+- Efficient storage formats
+- Cross-session persistence
 
-1. **Document Loading**: Load source documents using appropriate loaders
-2. **Text Splitting**: Split documents into manageable chunks
-3. **Embedding Generation**: Convert text chunks to numerical vectors
-4. **Vector Storage**: Store embeddings in vector databases
-5. **Similarity Search**: Retrieve relevant documents based on queries
-6. **Advanced Retrieval**: Use specialized retrievers for complex scenarios
+## Dependencies
 
-## Next Steps
+- **LangChain**: Core framework for RAG applications
+- **Sentence Transformers**: High-quality embedding models
+- **Chroma DB**: Vector database for development
+- **FAISS**: High-performance similarity search
+- **PyTorch**: GPU acceleration and model support
 
-After completing this module, you'll be ready to:
-- Move to Module 03: Building complete RAG applications
-- Implement document embedding pipelines in production
-- Design efficient retrieval systems for large document collections
-- Optimize vector storage and search performance
+## Exercises
+
+Each script includes practical exercises:
+1. **Custom Implementation**: Build your own retriever or similarity function
+2. **Performance Comparison**: Compare different approaches
+3. **Real-world Application**: Apply concepts to practical scenarios
 
 ## Troubleshooting
 
-- **Import Errors**: Ensure all dependencies are installed from `requirements.txt`
-- **Embedding Errors**: Check your IBM Watson AI credentials and project setup
-- **Vector Store Issues**: Verify ChromaDB and FAISS installations
-- **Memory Issues**: Large document collections may require significant memory
+### GPU Issues
+- Ensure CUDA is properly installed
+- Check PyTorch CUDA version compatibility
+- Verify GPU memory availability
 
-## Additional Resources
+### Model Download Issues
+- Check internet connection
+- Verify HuggingFace access
+- Use smaller models for testing
 
-- [LangChain Documentation](https://python.langchain.com/)
-- [IBM Watson AI Documentation](https://ibm.github.io/watsonx-ai-python-sdk/)
-- [ChromaDB Documentation](https://docs.trychroma.com/)
-- [FAISS Documentation](https://github.com/facebookresearch/faiss)
-- [Sentence Transformers](https://www.sbert.net/)
+### Memory Issues
+- Reduce chunk sizes
+- Use smaller embedding models
+- Enable gradient checkpointing
+
+## Next Steps
+
+After completing Module 02:
+1. **Module 03**: Advanced RAG techniques and applications
+2. **Custom Projects**: Apply concepts to your own datasets
+3. **Performance Tuning**: Optimize for your specific use case
+4. **Model Fine-tuning**: Customize embedding models for your domain
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
